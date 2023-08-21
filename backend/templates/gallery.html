@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>Images and Videos</title>
+    <style>
+        /* Your existing styles */
+        .navbar {
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            height: 60px;
+            display: flex;
+            justify-content: center; /* Center the navigation links */
+            align-items: center;
+            background-color: #6ca6f5; /* Light blue background color */
+            }
+            .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            }
+            
+            .navbar a:hover {
+            background-color: #ffcc00;
+            color: #333;
+            }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px;
+        }
+
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .donate-button {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            }
+            
+            .donate-button:hover {
+            background-color: #333;
+            color: #ffcc00;
+            }
+        /* Add styles for hover effect */
+        .gallery img:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        /* Add styles for full-screen view */
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .fullscreen-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* Navigation arrows and exit button */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-arrow.left {
+            left: 10px;
+        }
+
+        .nav-arrow.right {
+            right: 10px;
+        }
+
+        .exit-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'private_lessons' %}">Private Lessons</a>
+            <a href="{% url 'gallery' %}">Images/Videos</a>
+            <a href="{% url 'volunteer_request' %}">Help Now!</a>
+            <a href="{% url 'event_signup' %}">Charity Event</a>
+        </div>
+        <a class="donate-button" href="#">Donate</a>
+    </div>
+    <div class="gallery">
+        <!-- Insert your image tags here -->
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9Jmcv4HwHWQF4OCtQV71xgKdyqUcYoRLeeAGzYMYpmxhg43dvul-6JPtg-sW_fCesjoOXVCIgeO2HJLFAPAbB3Jw8OmicckHVlNkqAQfDnderaoHuKvtgDcPH89nsAJ9nvdVibl21NIjhOCVdClhh-Eg=w2766-h1844-s-no?authuser=0" alt="Image 1">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc_zwqm08ZAIBG3ddnjlfrDrb8mWFn8s64gZpcMFhEsiVjtg7iwXJpEKSjCafnDEBucLQlz5p1NqRo3JhS7nJ_et-Z-i00RpxwlX-S_UuLMNiYe7CYNmMqr7vN8Tkh92RwhTSQzCsDj1MqNGIyQoE0hWLg=w2766-h1844-s-no?authuser=0" alt="Image 2">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc8BTG0G8eGv6TIo6Ow5x7XI6zKsMjUEkB_nQ1Td1YEyZtB2xHajZ-zp3Xys2oHNbT2vb3V8SCXJsk7aKggFQBfdWAuqxPOIqHGvSmwE9PqRIHeF7A_-f-mcv8b-tEkkFNu67H4wJoV09ZVwALAUGtjB_Q=w2766-h1844-s-no?authuser=0" alt="Image 3">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc_2C5Ef-naSR_P4ZDycAufX-XrfaL3kSsN9vgCSQD_es0rz_1OqG3ek69p0Z2Hu3XOKIqe69dfOLr5K4WY-8Lv8PLdVPbkta8QNVOiT8s-Us_ApD6QX6ekKGu_CMWc84WePdXvaJQulQvHz2K7FVMK7-g=w2766-h1844-s-no?authuser=0" alt="Image 4">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9yI9PGVPUU9JL8m9fk6WkUcltDylpPKxSmFY-aUj4hV9fus3DUXbMdCHIG3liVFazwnvV7C39AUDfX5XqIpSF1woXA9dsVLe8g61pke1R80Ak5GwzxNNZU_fVvCfNxbN2ZcVDVwu5JVvsuiIO7b7EkEQ=w2766-h1844-s-no?authuser=0" alt="Image 5">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc_EXgn_6WpIfePPJaY9zNFVxoBi6gLz68bt-T9AqZiJUETMM78zf_P_gHypWhYHZJDKRfDPyQkEnqQ111knHsByrd1QHk2LEb2FGWxl8DNrPH-8j6QPvtgiAErhBFNqPW6CgNy7RPRg5GFZzWwjK-f9qQ=w2766-h1844-s-no?authuser=0" alt="Image 6">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc_ZHuLOg_5zjBu_XFdCYca2r5IbNTEATO9hl-U1r1BSycvSK2NiQ5-57jEl7K_ksok_LyGx_dYJ6Aw8LN75lJfMr2aC4yANjCwaEZDDKH9JV_tKw_XzmcSkknckL-1c1ngMFAEGsfrwF49bhK5O88OCUQ=w2766-h1844-s-no?authuser=0" alt="Image 7">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9XvQ68iEG1deabMa1gM9Hjhfg91il3-GJViYWXAlX5r8XPEdRFH6o3bNy2Ihmqqlqkn37YFfXvBqiDUEhdbEnpHWfSCBxhV6i4xf8HfKLVe4ewajHABsDS2oSLUOYNaCHFIIv59Spast_b-qTbdBurUw=w2766-h1844-s-no?authuser=0" alt="Image 8">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc8lr2kPoeng9HH2u1N3CVKof7tPmm-T_TtMfrpv07fYfsmK5Ba-bIFF_8UmaLO_jevIO5VyQLHw2NBuWDvEwGepzKdfDTsqhwU0O_yLUXTbNYN7cCSs5kbVPILiW175_EJv6EzXg3lQY4RXgDgT5pHJ-A=w2766-h1844-s-no?authuser=0" alt="Image 9">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9EvgfVRPUAUb-Z0Hcc2JYGYDb2T9qDc1NOB2KIps1kr4SHAzhUQGvq2ezcMEkG6oUx4Bp0KGLiqYrnhauGBfsZ5FUwogOmIu95doYzg5mYXui-pGATBG8M0tZ-RYrJFutUlB5RSkLDd1HJfhyyQCKGgA=w2766-h1844-s-no?authuser=0" alt="Image 10">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9tSVIhzAyv_dECJH0w9Zs-tBj1NtThQcA95YfXmlq9z8fCUQ_WwbzVwDo4eU9827zI1lKrb_FbIZzZ39eEhggFZTx95wzM4XHYStocmZkCCjt0Y88gDVU9s-XPxa2ra5F1XgciVnzyy3Mohbe7jvjKyg=w2766-h1844-s-no?authuser=0" alt="Image 11">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc9SJmCkZcjSFXO-J_HNq8sdl37d8ZKJkPZPFY2t0CfGXPhcpyk4qbHMCILqzQN5LvOUghfOWm3fWVkO_4xGlRtAnFTpW5ua7b62qVcVbQHkdr91CFRmBSq8YUOQ7j7c02StRV9wBrxm_4xvEL9gvJA2JA=w2663-h1775-s-no?authuser=0" alt="Image 12">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <img class="fullscreen-image" id="fullscreenImage" src="" alt="Full-screen Image">
+        <div class="nav-arrow left">&#8249;</div>
+        <div class="nav-arrow right">&#8250;</div>
+        <div class="exit-button">×</div>
+    </div>
+    <script>
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const navArrowLeft = fullscreenOverlay.querySelector('.nav-arrow.left');
+        const navArrowRight = fullscreenOverlay.querySelector('.nav-arrow.right');
+        const exitButton = fullscreenOverlay.querySelector('.exit-button');
+        let currentIndex = 0;
+
+        galleryImages.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                currentIndex = index;
+                showFullscreenImage(currentIndex);
+                fullscreenOverlay.classList.toggle('active');
+            });
+        });
+
+        function showFullscreenImage(index) {
+            fullscreenImage.src = galleryImages[index].src;
+        }
+
+        navArrowLeft.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            showFullscreenImage(currentIndex);
+        });
+
+        navArrowRight.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            showFullscreenImage(currentIndex);
+        });
+
+        exitButton.addEventListener('click', () => {
+            fullscreenOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

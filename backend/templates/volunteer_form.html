@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>Volunteer Application</title>
+    <style>
+        /* Include your navigation bar styles here */
+        /* Example styles (adjust as needed) */
+        body {
+            font-family: 'Montserrat', Arial, sans-serif; /* Use Montserrat font */
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            height: 60px;
+            display: flex;
+            justify-content: center; /* Center the navigation links */
+            align-items: center;
+            background-color: #6ca6f5; /* Light blue background color */
+        }
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #ffcc00;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333; /* Change label color */
+        }
+        input[type="text"], input[type="email"], input[type="date"], input[type="time"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="time"]:focus, select:focus {
+            border-color: #6ca6f5; /* Change border color on focus */
+        }
+        select {
+            display: block; /* Ensure the select element takes up the full width */
+            background-color: white;
+            font-size: 1rem; /* Adjust font size as needed */
+            line-height: 1.5; /* Adjust line height as needed */
+        }
+        button[type="submit"] {
+            background-color: #6ca6f5;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #ffcc00;
+            color: #333;
+        }
+        .content {
+            padding: 20px;
+            margin-top: 80px; /* To push the content below the fixed navbar */
+            text-align:center;
+        }
+        .form-container {
+            padding: 20px;
+            background-color: lightgray;
+            margin: 0; /* Reset margin to fill the entire width */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info p {
+            margin: 5px 0;
+            color: #333; /* Change text color */
+        }
+        .donate-button {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .donate-button:hover {
+            background-color: #6ca6f5;
+            color: #fff;
+        }
+        .banner {
+            max-width: 1200px;
+            height: 186px;
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+        /* You can add more styles as needed */
+        .banner {
+            max-width: 100%;
+            height: 150%;
+            display: block;
+            position: relative;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 50%; /* Adjust as needed to vertically center the overlay */
+            left: 50%; /* Adjust as needed to horizontally center the overlay */
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'private_lessons' %}">Private Lessons</a>
+            <a href="{% url 'gallery' %}">Images/Videos</a>
+            <a href="{% url 'volunteer_request' %}">Help Now!</a>
+            <a href="{% url 'event_signup' %}">Charity Event</a>
+        </div>
+        <a class="donate-button" href="#">Donate</a>
+    </div>
+    <img  src="https://lh3.googleusercontent.com/pw/AIL4fc_NSNQ9xfUp00KL5X3swfmFw3Fgaadvx_9yPk_buLLOY4pm9H9Ggw2cfBSApDX16n_j-Hg965FtKOavKcumIyscEXjBOBZXmNI_GCt9D15HeWP32CgWBzkM41EDEfa-82Ofyd01TRD2roFTRJ1V4SmASg=w2766-h1844-s-no?authuser=0" class="banner" alt="Tennis Banner">
+    <div class="banner-overlay">
+        <div class="content">
+            <h1>Sign Up for Volunteering Opportunities</h1>
+        </div>
+    <div class="form-container">
+        <h2>Contact Information:</h2>
+        <div class="contact-info">
+            <p>Email: qstarttennis@gmail.com</p>
+            <p>Text: 917-291-8971</p>
+        </div>
+        <form method="post" action="{% url 'volunteer_request' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <ul class="errorlist">
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="submit-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

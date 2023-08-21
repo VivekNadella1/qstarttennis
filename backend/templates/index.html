@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickStart Tennis</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+    /* Reset some default styles for consistent styling */
+    body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    }
+
+    /* Basic styling */
+    body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    }
+    header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    }
+    .navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    height: 60px;
+    display: flex;
+    justify-content: center; /* Center the navigation links */
+    align-items: center;
+    background-color: #6ca6f5; /* Light blue background color */
+    }
+    .navbar a {
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .navbar a:hover {
+    background-color: #ffcc00;
+    color: #333;
+    }
+    .donate-button {
+    background-color: #ffcc00;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .donate-button:hover {
+    background-color: #333;
+    color: #ffcc00;
+    }
+    .cover {
+    background: url('https://lh3.googleusercontent.com/pw/AIL4fc_hj4tzqvtPxy2sAaA2yL23rcooQjq_9DsUsznt0YJzdXeS1TYLjwxJyXN6leIgTcKJHJYqynzW1iY-iWkqTimCBH6Iu0Qkf1TDD_LdAaknuHXasV1Zc8RfMHUzLJz8IRVnorMmoSAetLqNX12SEeXVOg=w2766-h1844-s-no?authuser=0') center/cover no-repeat;
+    background-size: cover; /* Adjust background size */
+    background-opacity: 0.5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;\
+    opacity: 0.8; /* Adjust the opacity value */
+
+    }
+    .cover h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+    }
+    
+    .cover p {
+        font-size: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+    }
+    .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    margin-top: -40px;
+    }
+    .mission {
+    text-align: center;
+    margin: 2rem 0;
+    }
+    .sign-up-link {
+    text-align: center;
+    margin: 2rem 0;
+    }
+    .coach-list {
+    display: flex;
+    justify-content: center; /* Center coaches horizontally */
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    }
+    .coach-card {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 1rem; /* Equal spacing around each coach */
+    flex-basis: calc(33.33% - 2rem); /* Adjusted to account for spacing */
+    transition: transform 0.3s;
+    }
+    .coach-card:hover {
+    transform: translateY(-5px);
+    }
+    .coach-card img {
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Maintain image aspect ratio */
+    height: 200px; /* Set a fixed height for consistency */
+    }
+    .contact {
+    text-align: center;
+    margin: 2rem 0;
+    }
+    html {
+    scroll-behavior: smooth;
+    }
+    .location-info {
+        text-align: center;
+        margin-top: 2rem;
+      }
+  
+      .location-info h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+  
+      .location-info p {
+        font-size: 1.25rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+  
+      .get-directions-button {
+        display: inline-block;
+        background-color: #6ca6f5;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+      }
+  
+      .get-directions-button:hover {
+        background-color: #333;
+        color: #ffcc00;
+      }
+  
+      .simple-map {
+        text-align: center;
+        margin-top: 2rem;
+      }
+</style>
+</head>
+<body>
+  <div class="navbar">
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'private_lessons' %}">Private Lessons</a>
+        <a href="{% url 'gallery' %}">Images/Videos</a>
+        <a href="{% url 'volunteer_request' %}">Help Now!</a>
+        <a href="{% url 'event_signup' %}">Charity Event</a>
+    </div>
+    <a class="donate-button" href="#">Donate</a>
+</div>
+<div class="cover">
+    <h1>Welcome to QuickStart Tennis</h1>
+    <p>Your journey to tennis excellence starts here.</p>
+</div>
+<div class="container">
+    <div class="mission">
+    <h2>Mission Statement</h2>
+    <p>QuickStart Tennis is dedicated to providing affordable and high-quality tennis education to all students...</p>
+    </div>
+    <div class="sign-up-link">
+    <p>Coaches:</p>
+    </div>
+    <div class="coach-list">
+    <!-- Coach Card Example -->
+    <div class="coach-card">
+        <img src="https://lh3.googleusercontent.com/pw/AIL4fc8ut-f1qF2KJyPWn_Js9RzZ5vnggnxMEUwjJwTMGLwWugBU1F2Ci-mBvKrGmyNRSsJqvzDSC8266BRoQzMwE8s54kMKsk3IRDJNArX-726d5_Tewv76eBoD5bLN-p4IGfNHOG5O2GNhttLR1TjbHMdycg=w2766-h1844-s-no?authuser=0" alt="Coach Name">
+        <h3>Brandon</h3>
+        <p>2 year varsity tennis player and 2 year coach at GSTC</p>
+    </div>
+    <div class="coach-card">
+      <img src="https://drive.google.com/uc?export=view&id=1xIWMh7b4PXpnTRh0nMG-V2zGOKx9heqh" alt="Your Image">
+        <h3>Vishal</h3>
+        <p>Varsity tennis player and 3 year coach at GSTC</p>
+    </div>
+    <div class="coach-card">
+      <img src="https://drive.google.com/uc?export=view&id=1bp4-4N_hZpby2lrN1scblYwLUmvyVZd_" alt="Your Image">
+      <h3>Ishaan</h3>
+        <p>4 year coaching experience and varsity tennis player</p>
+    </div>
+    <div class="coach-card">
+      <img src="https://drive.google.com/uc?export=view&id=1xUS0uhdpo9Pl9hMrgJcNrNInesIwr-5y" alt="Your Image">
+      <h3>Shravan</h3>
+        <p>Varsity tennis captain and 2 year coach at GSTC<p>
+    </div>
+    <div class="coach-card">
+      <img src="https://drive.google.com/uc?export=view&id=1eq4O4Ok7QqH3ui0wwGaFWVR3O3bl0F0H" alt="Your Image">
+      <h3>Yajat</h3>
+        <p>2 year varsity tennis player and 2 year coach GSTC</p>
+    </div>
+    <div class="coach-card">
+      <img src="https://drive.google.com/uc?export=view&id=16NMiweF23Ks1J80DeHonGJC8lTxO8Ps2" alt="Your Image">
+      <h3>Ansh</h3>
+        <p>2 Star Recruit and 2 year coach at GSTC</p>
+    </div>
+    </div>
+    <div class="contact">
+    <p>If you would like to volunteer, email qstarttennis@gmail.com or text 9172918971</p>
+    <p>If you would like to donate, email (email/gofundme) or email/text</p>
+    </div>
+</div>
+
+<div class="location-info">
+    <h2>Group Practice Location</h2>  
+    <a href="https://www.google.com/maps/dir//J.P.+Stevens+High+School,+855+Grove+Ave,+Edison,+NJ+08820/@40.5800758,-74.364753,835m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x89c3b71d2dfd7c0b:0x9dc8ff5cf26f9e9b!2m2!1d-74.3621781!2d40.5800758!3e0?entry=ttu" target="_blank" class="get-directions-button">Get Directions</a>
+  </div>
+
+  <div class="simple-map">
+    <iframe
+      width="100%"
+      height="600"
+      frameborder="0"
+      style="border: 0"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-74.362747%2C40.581350%2C-74.362747%2C40.581350&amp;layer=mapnik&amp;marker=40.581350%2C-74.362747"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+
+</body>
+</html>

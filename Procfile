@@ -1,0 +1,1 @@
+web gunicorn quickstart.wsgi:application --log-file -
