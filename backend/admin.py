@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import PrivateLesson, Volunteer
+from .models import PrivateLesson, Volunteer, GroupLesson
+
 
 @admin.register(PrivateLesson)
 class PrivateLessonAdmin(admin.ModelAdmin):
@@ -10,3 +11,7 @@ class PrivateLessonAdmin(admin.ModelAdmin):
 @admin.register(Volunteer)
 class VolunteerAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'contact_phone_number', 'contact_email', 'skills')
+
+@admin.register(GroupLesson)
+class GroupLessonsAdmin(admin.ModelAdmin):
+    list_display = ('childs_name', 'contact_phone_number', 'contact_email')

@@ -18,6 +18,11 @@ class PrivateLesson(models.Model):
     preferred_coach = models.CharField(max_length=20, choices=COACH_CHOICES, blank=True)
     
 
+class GroupLesson(models.Model):
+    childs_name = models.CharField(max_length=100)
+    contact_email = models.EmailField()
+    contact_phone_number = PhoneNumberField() 
+
 class Volunteer(models.Model):
     full_name = models.CharField(max_length=100)
     contact_email = models.EmailField()
