@@ -8,7 +8,7 @@ class PrivateLessonForm(forms.ModelForm):
 
 class GroupLessonForm(forms.ModelForm):
     class Meta:
-        model = PrivateLesson
+        model = GroupLesson
         fields = ['childs_name', 'contact_phone_number', 'contact_email']
 
 
