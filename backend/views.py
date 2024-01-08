@@ -15,7 +15,7 @@ def private_lessons(request):
             form.save()
             return redirect('private_lessons_success')
         else:
-            print(form.errors)  # Print form errors for debugging
+            print(form.errors)  
     else:
         form = PrivateLessonForm()
 
@@ -27,7 +27,7 @@ def group_lessons(request):
             form.save()
             return redirect('group_lessons_success')
         else:
-            print(form.errors)  # Print form errors for debugging
+            print(form.errors) 
     else:
         form = GroupLessonForm()
 
@@ -89,18 +89,17 @@ def export_data_to_csv(request, data_type):
     elif data_type == 'event_signups':
         data = EventSignup.objects.all()
         filename = 'event_signups.csv'
-    elif data_type == 'group_lessons':  # Add support for 'group_lessons'
+    elif data_type == 'group_lessons':  
         data = GroupLesson.objects.all()
         filename = 'group_lessons.csv'
     else:
         return HttpResponse('Invalid data type', status=400)
 
-    # Create a CSV response
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
 
     writer = csv.writer(response)
-    writer.writerow([field.name for field in data.model._meta.fields])  # Write header row
+    writer.writerow([field.name for field in data.model._meta.fields]) 
 
     for item in data:
         writer.writerow([getattr(item, field.name) for field in data.model._meta.fields])
